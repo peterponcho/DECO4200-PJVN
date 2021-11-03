@@ -3,6 +3,7 @@ import { View, StyleSheet, Text} from 'react-native';
 import DisplayPicture from './DisplayPicture';
 
 function GroupDisplay(props) {
+    // const displayPictures = Object.values(props.group.groupMembers).map((data) => <View style={styles.displayPicture}/>)
     const displayPictures = Object.values(props.group.groupMembers).map((data) => <DisplayPicture />)
 
     return (
