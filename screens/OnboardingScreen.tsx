@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TextInput, SafeAreaView, View, Image, Text, StyleSheet, Dimensions, FlatList, Button, TouchableOpacity} from 'react-native';
+import { TextInput, SafeAreaView, View, Image, Text, StyleSheet, Dimensions, FlatList, TouchableOpacity} from 'react-native';
 // https://github.com/hakymz/OnboardingScreenAppReactNative/blob/main/src/screens/OnboardingScreen.js
 
 const windowWidth = Dimensions.get('window').width;

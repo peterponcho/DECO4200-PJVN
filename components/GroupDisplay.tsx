@@ -4,38 +4,39 @@ import DisplayPicture from './DisplayPicture';
 
 function GroupDisplay(props) {
     // const displayPictures = Object.values(props.group.groupMembers).map((data) => <View style={styles.displayPicture}/>)
-    const displayPictures = Object.values(props.group.groupMembers).map((data) => <DisplayPicture />)
+    const displayPictures = Object.values(props.group.groupMembers).map((data, index) => <DisplayPicture id = {index} displayName={true}/>)
 
     return (
         <View style= {styles.groupDisplay}>
-        <View style={styles.groupDP}>
-            {displayPictures}
-
-        </View>
-        <View style={styles.groupInfo}>
-            <Text style={styles.groupName}>
+            <View style={styles.groupDP}>
+                {displayPictures}
+            </View>
+        {/* <View style={styles.groupInfo}> */}
+            {/* <Text style={styles.groupName}>
                 {props.group.groupName}
-            </Text>
-            <Text>
-
+            </Text> */}
+            {/* <Text>
             {Object.values(props.group.groupMembers).map((data) => data.displayName).join(', ')}
-
-            </Text>
+            </Text> */}
+        {/* </View> */}
         </View>
-    </View>
     );
 }
 const styles = StyleSheet.create({
     groupDisplay:{
-        height: '60%',
-        width: '40%',
+        height: '70%',
         backgroundColor: '#fff',
-        flexDirection:'row',
+        borderRadius: 20,
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+
     },
     groupInfo:{
         flex: 1,
-        alignItems: 'flex-start',
+        alignItems: 'center',
         justifyContent:'center',
+        
 
     },
     groupName:{

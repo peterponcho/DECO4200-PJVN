@@ -11,23 +11,33 @@ import { RootTabScreenProps } from '../types';
 
 // Dummy member, group, texts.
 const member1 = Member(1, "Lisa Maroon", "Lisa", true, false);
-const member2 = Member(2, "Kate Maroon", "Kate", false, false);
-const member3 = Member(3, "Lacy Maroon", "Lacy", false, false);
-const member4 = Member(4, "Sam Maroon", "Sam", false, false);
+const member2 = Member(2, "John Maroon", "John", false, false);
+const member3 = Member(3, "Daniel Maroon", "Daniel", false, false);
+const member4 = Member(4, "Mary Maroon", "Mary", false, false);
 const members = [member1, member2, member3, member4];
 const myGroup = Group("Maroon Family", members, 4);
 const testDescription= 'French Toast for lunch!';
 const testText = "YAYYYY!!!!"
 
+
 export default function TabOneScreen({ navigation, route }: RootTabScreenProps<'TabOne'>) {
   const [postData, setPostData] = React.useState(defaultData); // list of posts.
   const [count, setCount] = React.useState(4); // id post counter
+  const [deliveryDate, setDeliveryDate] = React.useState(null);
+  const ann1 = 'It’s your turn to pick the ingredient pack!'
+  const ann2 = `Your delivery is coming this ${deliveryDate}!`
 
   React.useEffect(() => {
     navigation.addListener('focus', () => {
       
       // Get data from createNewPost.
       if(route.params){
+        console.log(route.params);
+        if(route.params === 'Monday' || route.params === 'Tuesday'|| route.params === 'Wednesday'){
+            setDeliveryDate(route.params);
+            return;
+        }
+
         setCount(count+1); // update post counter.
         const newPost = {
           id: 1 + count.toString(), // '110' instead of '20'
@@ -56,14 +66,14 @@ export default function TabOneScreen({ navigation, route }: RootTabScreenProps<'
   });
 
 
-
+  console.log(deliveryDate);
   return (
     <View style={styles.container}>
-      <Button
+      {/* <Button
         onPress={() => navigation.navigate('Modal')}
         title="Create a new post"
-      />
-      <TopBar group = {myGroup} />
+      /> */}
+      <TopBar group = {myGroup} annText={`${deliveryDate ? ann2: ann1}`} activeButton= {deliveryDate ? false: true}/>
       <View style={styles.bulletinBoard}>
         <View style={styles.postArea}>
 
@@ -94,7 +104,10 @@ export default function TabOneScreen({ navigation, route }: RootTabScreenProps<'
 
         </View>
       </View>
-
+      <Button
+        onPress={() => navigation.navigate('Modal')}
+        title="Create a new post"
+      />
     </View>
   );
 }
@@ -113,14 +126,14 @@ const styles = StyleSheet.create({
 
   bulletinBoard: {
     flex: 1,
-    backgroundColor: '#f4f4f4',
+    backgroundColor: '#FBF9F8',
     justifyContent: 'flex-start',
     alignItems: 'center'
 
   },
 
   postArea:{
-    backgroundColor: '#aaaaaa',
+    backgroundColor: '#F3EDE5',
     alignSelf: 'stretch',
     height: '100%',
     flexDirection: 'row',

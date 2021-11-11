@@ -17,8 +17,13 @@ import NotFoundScreen from '../screens/NotFoundScreen';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import OnboardingScreen from '../screens/OnboardingScreen';
+import ChoosingIngredients from '../screens/ChoosingIngredients';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
+import HowPickWork from '../screens/HowPickWork';
+import WhatDiet from '../screens/WhatDiet';
+import HowToPick from '../screens/HowToPick';
+import WhyThree from '../screens/WhyThree';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -40,10 +45,16 @@ function RootNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Root" component={OnboardingScreen} options={{ headerShown: false }} />
+      {/* <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} /> */}
       <Stack.Screen name="Mealshare" component={BottomTabNavigator} options={{ headerShown: false }} />
+      <Stack.Screen name="ChooseIngr" component={ChoosingIngredients} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={createNewPost} />
+        <Stack.Screen name="HowPickWork" component={HowPickWork} options={{ title: 'How Does Picking Ingredients Work?' }}/>
+        <Stack.Screen name="WhatDiet" component={WhatDiet} options={{ title: 'What are dietary requirements?'}}/>
+        <Stack.Screen name="HowToPick" component={HowToPick} options={{ title: 'How do I pick my ingredients pack?'}}/>
+        <Stack.Screen name="WhyThree" component={WhyThree} options={{ title: 'Why are there only 3 days?'}}/>
       </Stack.Group>
     </Stack.Navigator>
   );

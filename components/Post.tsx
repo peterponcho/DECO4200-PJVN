@@ -1,7 +1,6 @@
 import { FLIPPED_ALIAS_KEYS, switchStatement, tSImportEqualsDeclaration } from '@babel/types';
 import React from 'react';
-import { StyleSheet, Image } from 'react-native';
-import CustomButton from './CustomButton';
+import { StyleSheet, Image, TouchableOpacity } from 'react-native';
 import DisplayPicture from '../components/DisplayPicture';
 import { Text, View} from '../components/Themed';
 
@@ -20,23 +19,32 @@ function Post({type, img, text, desc, comments, member}) {
         <View style={styles.post}>
             <View style={styles.topArea}>
                 <View style = {styles.user}>
-                    <DisplayPicture />
-                    <Text>{member.displayName}</Text>
+                    <DisplayPicture id ={member?.id-1}/>
+                    <Text>{member?.displayName}</Text>
                 </View>
                 <View style = {styles.description}>
                     {/* show  description if there is description*/}
                     {hasDesc && postDesc} 
                 </View>
             </View>
+
             <View style = {styles.postContainer}>
                 {/* show  image and text if there is */}
                 {hasImg && postImg}
                 {hasText && postText}
             </View>
+            
             <View style={styles.actionButtons}>
                 <View style = {styles.addComment}>
-                    {/* haven't done this */}
-                    <CustomButton title='Add Comment' textSize={12} textLineHeight={12} />
+                    <TouchableOpacity 
+                    >
+                        <Text>
+                            {`Comment on ${member?.displayName === 'Me' ? 'my' : (member?.displayName + '\'s ')}` +  ` post`}
+                        </Text>
+                    </TouchableOpacity>
+
+
+
                 </View>
 
             </View>
@@ -46,15 +54,15 @@ function Post({type, img, text, desc, comments, member}) {
 
 const styles = StyleSheet.create({
     post:{
-        width: 500,
-        height: 500,
+        width: 400,
+        height: 400,
         marginRight: 100,
-        // backgroundColor: 'blue'
     },
     topArea:{
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'flex-start',
+
         backgroundColor:'red',
     },
     user:{
@@ -77,7 +85,7 @@ const styles = StyleSheet.create({
 
     postContainer:{
         flex: 4,
-        backgroundColor: 'yellow',
+        backgroundColor: '#F1F1F1',
         alignItems: 'center',
         justifyContent: 'center'
     },

@@ -108,7 +108,7 @@ export default function createNewPost({navigation}: RootStackScreenProps<'Modal'
       </View>
 
       <View style = {styles.button}>
-        <Button title={postButtonTitle} onPress={() => navigation.navigate("Root", {screen: 'TabOne', params: [image, postText]}  )} />
+        <Button title={postButtonTitle} onPress={() => navigation.navigate("Mealshare", {screen: 'TabOne', params: [image, postText]}  )} />
       </View>
 
     </View>
