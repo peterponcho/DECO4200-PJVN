@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { TextInput, SafeAreaView, View, Image, Text, StyleSheet, Dimensions, FlatList, TouchableOpacity} from 'react-native';
-// https://github.com/hakymz/OnboardingScreenAppReactNative/blob/main/src/screens/OnboardingScreen.js
+
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -191,11 +191,20 @@ function OnboardingScreen({navigation}) {
         if (allClear){
             const nextSlideIndex = currentSlideIndex + 1;
 
+            /* USYD CODE CITATION ACKNOWLEDGEMENT
+            * I declare that the following lines of code have been copied from the
+            * website titled: " OnboardingScreenAppReactNativePublic"
+            * and it is not my own work.
+            *
+            * Original URL
+            * //https://github.com/hakymz/OnboardingScreenAppReactNative/blob/main/src/screens/OnboardingScreen.js
+            * Last access November, 2021
+            */
             if (nextSlideIndex != slides.length) {
                 const offset = nextSlideIndex * windowWidth;
                 ref?.current.scrollToOffset({offset});
                 setCurrentSlideIndex(currentSlideIndex + 1);
-
+            /* end of copied code */
             }else{
                 navigation.navigate("Mealshare");
             }
@@ -217,11 +226,21 @@ function OnboardingScreen({navigation}) {
         
         // Go to previous slide.
         }else{
+            /* USYD CODE CITATION ACKNOWLEDGEMENT
+            * I declare that the following lines of code have been copied from the
+            * website titled: " OnboardingScreenAppReactNativePublic"
+            * and it is not my own work.
+            *
+            * Original URL
+            * //https://github.com/hakymz/OnboardingScreenAppReactNative/blob/main/src/screens/OnboardingScreen.js
+            * Last access November, 2021
+            */
             const nextSlideIndex = currentSlideIndex - 1;
             if (nextSlideIndex >=0) {
             const offset = nextSlideIndex * windowWidth;
             ref?.current.scrollToOffset({offset});
             setCurrentSlideIndex(currentSlideIndex - 1);
+            /* end of copied code */
             }
         }
 

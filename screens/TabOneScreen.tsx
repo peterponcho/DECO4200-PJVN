@@ -16,8 +16,7 @@ const member3 = Member(3, "Daniel Maroon", "Daniel", false, false);
 const member4 = Member(4, "Mary Maroon", "Mary", false, false);
 const members = [member1, member2, member3, member4];
 const myGroup = Group("Maroon Family", members, 4);
-const testDescription= 'French Toast for lunch!';
-const testText = "YAYYYY!!!!"
+const testText = "French Toast for lunch!"
 
 
 export default function TabOneScreen({ navigation, route }: RootTabScreenProps<'TabOne'>) {
@@ -30,9 +29,8 @@ export default function TabOneScreen({ navigation, route }: RootTabScreenProps<'
   React.useEffect(() => {
     navigation.addListener('focus', () => {
       
-      // Get data from createNewPost.
+      // Get data from createNewPost and from choosing ingredients delivery date.
       if(route.params){
-        console.log(route.params);
         if(route.params === 'Monday' || route.params === 'Tuesday'|| route.params === 'Wednesday'){
             setDeliveryDate(route.params);
             return;
@@ -65,35 +63,28 @@ export default function TabOneScreen({ navigation, route }: RootTabScreenProps<'
     });
   });
 
-
-  console.log(deliveryDate);
   return (
     <View style={styles.container}>
-      {/* <Button
-        onPress={() => navigation.navigate('Modal')}
-        title="Create a new post"
-      /> */}
-      <TopBar group = {myGroup} annText={`${deliveryDate ? ann2: ann1}`} activeButton= {deliveryDate ? false: true}/>
+      <TopBar group = {myGroup} delDate={`${deliveryDate ? deliveryDate : null}`}  annText={`${deliveryDate ? ann2: ann1}`} activeButton= {deliveryDate ? false: true}/>
       <View style={styles.bulletinBoard}>
         <View style={styles.postArea}>
 
           <SectionList
-          // horizontal
-          // inverted={true}
           contentContainerStyle={{ paddingHorizontal: 10 }}
           stickySectionHeadersEnabled={false}
           sections={postData}
           renderSectionHeader={({ section }) => (
             <>
-              <Text style={styles.title}>{section.title}</Text>
+              <View style = {styles.dayPost}>
+              <Text style={styles.title}>{`${section.title.toUpperCase()}`}</Text>
               <FlatList
                 horizontal
                 data={section.data}
-                // inverted={true}
                 renderItem={({ item }) => <Post type={item.postType} img={item.img}  text = {item.text} desc = {item.desc} member={item.member}/>}
                 keyExtractor={item => item.id}
-                showsHorizontalScrollIndicator={false}
-              />
+                showsHorizontalScrollIndicator={false}/>
+                </View>
+              
             </>
           )}
           renderItem={({ item, section }) => {
@@ -105,7 +96,7 @@ export default function TabOneScreen({ navigation, route }: RootTabScreenProps<'
         </View>
       </View>
       <Button
-        onPress={() => navigation.navigate('Modal')}
+        onPress={() => navigation.navigate('NewPost')}
         title="Create a new post"
       />
     </View>
@@ -122,6 +113,9 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 50,
     fontWeight: 'bold',
+    color:'#FF792E',
+    paddingVertical: '2%',
+    alignSelf: 'center',
   },
 
   bulletinBoard: {
@@ -141,18 +135,23 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
 
   },
+  dayPost:{
+    backgroundColor: '#F3EDE5',
+    paddingBottom:'5%',
+    paddingLeft: '5%',
+  }
 
 });
 
-// The images should've been uri but I haven't put one yet
 const defaultData= [
   {
+    id: 'd1',
     title: 'Today',
     data: [  {
       id: '10',
       postType: 'textOnly',
       img: null,
-      text: testText,
+      text: 'Today I made spaghetti!',
       desc: null,
       member: member1,
   
@@ -161,7 +160,7 @@ const defaultData= [
       id: '11',
       postType: 'textOnly',
       img: null,
-      text: testText,
+      text: 'Can\'t wait to use the ingredients to cook!',
       desc: null,
       member: member2,
   
@@ -179,7 +178,7 @@ const defaultData= [
       id: '13',
       postType: 'textOnly',
       img: null,
-      text: testText,
+      text: 'The ingredients are so fresh this week!',
       desc: null,
       member: member4,
   
@@ -188,25 +187,5 @@ const defaultData= [
 
     ]
   },
-  {
-    title: 'Yesterday',
-    data:[  {
-      id: '21',
-      postType: 'textOnly',
-      img: null,
-      text: testText,
-      desc: testDescription,
-      member: member1,
-    },
-    {
-      id: '22',
-      postType: 'textOnly',
-      img: null,
-      text: testText,
-      desc: testDescription,
-      member: member1,
-    }
-    ]
-  }
 
 ];

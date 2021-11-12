@@ -1,24 +1,23 @@
 import React from 'react';
-import CustomButton from '../components/CustomButton';
 import GroupDisplay from '../components/GroupDisplay'
 import { View, StyleSheet, Text} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 
+// Top bar of bulletin board.
 function TopBar(props) {
     const navigation = useNavigation();
+    const delDate = props?.delDate;
 
     return (
         <View style={styles.container}>
             <GroupDisplay group= {props?.group}/>
             <View style={styles.trackIngredientContainer}>
-                {/* <CustomButton title='Track Ingredient Delivery Status' textSize= {24} textLineHeight= {24} /> */}
                 <Text style= {styles.announcements}>
                     Announcements
                 </Text>
                 <TouchableOpacity
-                onPress = {() => props?.activeButton? navigation.navigate("ChooseIngr") : null}
-                disabled={props?.activeButton? false: true}
+                onPress = {() => props?.activeButton? navigation.navigate("ChooseIngr") :  navigation.navigate("TrackDelivery", {screen: 'TabOne', params: delDate} )}
                 style = {styles.annBtn}>
                     <Text style={styles.btnText}>
                         {props?.annText}
@@ -42,17 +41,14 @@ const styles = StyleSheet.create({
     },
     trackIngredientContainer:{
         height: '70%',
-        // width: '40%',
         flex: 1,
         backgroundColor: '#fff',
         marginLeft: '10%',
         borderRadius: 20,
         justifyContent: 'center',
         alignItems: 'center',
-
-        // paddingVertical: '2%'
-
     },
+
     announcements:{
         paddingBottom: '5%',
         fontSize: 18,
@@ -70,8 +66,6 @@ const styles = StyleSheet.create({
     btnText:{
         color: '#205ECF',
         fontSize: 20,
-        // lineHeight: 20,
-
     }
 
 })

@@ -1,4 +1,3 @@
-
 const dietaryList = [
     {
         id: '1',

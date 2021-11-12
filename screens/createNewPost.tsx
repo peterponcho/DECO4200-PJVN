@@ -5,7 +5,16 @@ import { Camera } from 'expo-camera';
 import { RootStackScreenProps } from '../types';
 import { Text, View } from '../components/Themed';
 
-export default function createNewPost({navigation}: RootStackScreenProps<'Modal'>) {
+export default function createNewPost({navigation}: RootStackScreenProps<'NewPost'>) {
+  /* USYD CODE CITATION ACKNOWLEDGEMENT
+  * I declare that the following lines of code have been copied from the
+  * website titled: "Expo Camera"
+  * and it is not my own work.
+  *
+  * Original URL
+  * //https://docs.expo.dev/versions/latest/sdk/camera/
+  * Last access November, 2021
+  */
   const liveCam = <Camera
                     ref={ref => setCamera(ref)}
                     style={styles.fixedRatio}
@@ -52,6 +61,7 @@ export default function createNewPost({navigation}: RootStackScreenProps<'Modal'
       setTakePictureButton("Take Picture");
     }
   }
+  /* end of copied code */
 
   // Captures text input.
   const handleEditChange = (text: string) =>{
@@ -74,7 +84,7 @@ export default function createNewPost({navigation}: RootStackScreenProps<'Modal'
       <View style={styles.textDesc}>
 
         <View style={styles.user}>
-          <DisplayPicture/>
+        <DisplayPicture id ={0}/>
           <Text style={styles.title}>Me</Text>
         </View>
 
@@ -133,17 +143,19 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     flexDirection:'row',
     width: '100%',
-    backgroundColor: 'yellow'
 
   },
 
   user:{
     flex: 1,
-    backgroundColor: 'red',
+    justifyContent: 'center',
+    alignItems: 'center',
+
   },
 
   textInputArea:{
-    flex: 5,
+    flex: 4,
+
   },
 
   cameraArea:{
@@ -153,7 +165,9 @@ const styles = StyleSheet.create({
 
   button:{
     flex: 1,
-    width: '100%'
+    width: '100%',
+    justifyContent: 'center',
+
   },
 
   cameraContainer: {

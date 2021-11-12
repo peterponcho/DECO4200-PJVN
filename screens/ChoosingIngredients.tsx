@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TextInput, SafeAreaView, View, Image, Text, StyleSheet, Dimensions, FlatList, TouchableOpacity, ScrollView } from 'react-native';
+import { TextInput, SafeAreaView, View, Image, Text, StyleSheet, Dimensions, FlatList, TouchableOpacity} from 'react-native';
 import { dietaryList, allergies, navInfo, specialDiet, religiousReasons, kits } from '../components/ChoosingIngredientsData';
 import DisplayKit from '../components/DisplayKit';
 const windowWidth = Dimensions.get('window').width;
@@ -48,11 +48,11 @@ const ChoosingIngredients = ({navigation}) => {
         {
             id: 'c2',
             multipleImg: false,
-            hasQuestion: true,
+            hasQuestion: false,
             image: null,
             title: 'Do you have any allergies or dietary requirements we need to know about?',
             subtitle: null,
-            question: 'What are dietary requirements?',
+            question: null,
             nextText: null,
             indicator: 2,
     
@@ -61,11 +61,11 @@ const ChoosingIngredients = ({navigation}) => {
         {
             id: 'c3',
             multipleImg: true,
-            hasQuestion: true,
+            hasQuestion: false,
             image: dietaryImg,
             title: 'What are they?',
             subtitle: 'Not listed here? Let us know what it is.',
-            question: 'What are dietary requirements?',
+            question: null,
             nextText: 'Next',
             indicator: 2,
     
@@ -171,15 +171,22 @@ const ChoosingIngredients = ({navigation}) => {
 
         // Go to next slide.
         // Or to bulletin board if no slides left.
+        /* USYD CODE CITATION ACKNOWLEDGEMENT
+        * I declare that the following lines of code have been copied from the
+        * website titled: " OnboardingScreenAppReactNativePublic"
+        * and it is not my own work.
+        *
+        * Original URL
+        * //https://github.com/hakymz/OnboardingScreenAppReactNative/blob/main/src/screens/OnboardingScreen.js
+        * Last access November, 2021
+        */
         const nextSlideIndex = currentSlideIndex + 1;
         if (nextSlideIndex != slides.length) {
             const offset = nextSlideIndex * windowWidth;
             ref?.current.scrollToOffset({offset});
             setCurrentSlideIndex(currentSlideIndex + 1);
-
+            /* end of copied code */
         }else{
-            // navigation.navigate("Mealshare");
-            //navigation.navigate("Mealshare", {params: [deliveryDate]});
             navigation.navigate("Mealshare", {screen: 'TabOne', params: deliveryDate} );
         }
 
@@ -190,6 +197,15 @@ const ChoosingIngredients = ({navigation}) => {
     const skipDiet = () => {
 
         // Skip dietary requirements slide.
+        /* USYD CODE CITATION ACKNOWLEDGEMENT
+        * I declare that the following lines of code have been copied from the
+        * website titled: " OnboardingScreenAppReactNativePublic"
+        * and it is not my own work.
+        *
+        * Original URL
+        * //https://github.com/hakymz/OnboardingScreenAppReactNative/blob/main/src/screens/OnboardingScreen.js
+        * Last access November, 2021
+        */
         const nextSlideIndex = currentSlideIndex + 2;
         if (nextSlideIndex != slides.length) {
             const offset = nextSlideIndex * windowWidth;
@@ -197,6 +213,7 @@ const ChoosingIngredients = ({navigation}) => {
             setCurrentSlideIndex(currentSlideIndex + 2);
 
         }
+        /* end of copied code */
 
         setHasDiet(false);
     };
@@ -207,7 +224,6 @@ const ChoosingIngredients = ({navigation}) => {
         // Skips dietary requirement slide if user pressed no previously.
         let num = 0;
         if (currentSlideIndex == 3 && !hasDiet){
-            // console.log("yes");
             num = 2;
         }else{
             num = 1;
@@ -365,8 +381,6 @@ const ChoosingIngredients = ({navigation}) => {
     const questionHandler = (index) => {
         if (index == 0){
             navigation.navigate('HowPickWork');
-        }else if (index == 1 || index == 2){
-            navigation.navigate('WhatDiet');
         }else if (index == 4){
             navigation.navigate('HowToPick');
         }else if (index == 8){
@@ -384,6 +398,7 @@ const ChoosingIngredients = ({navigation}) => {
 
                 {/* No back button after user confirms ingredient pack*/}
                 { currentSlideIndex != 7 &&
+                
                 <TouchableOpacity 
                 style={styles.nextButton}
                 onPress={goBack}>

@@ -1,4 +1,3 @@
-import { FLIPPED_ALIAS_KEYS, switchStatement, tSImportEqualsDeclaration } from '@babel/types';
 import React from 'react';
 import { StyleSheet, Image, TouchableOpacity, FlatList, TextInput} from 'react-native';
 import DisplayPicture from '../components/DisplayPicture';
@@ -8,8 +7,8 @@ const lcomments= [
     {
         id: '1',
         text: 'That look\'s delicious!',
-        name: 'John',
-        memNum: 1,
+        name: 'Mary',
+        memNum: 3,
 
     }, 
     {
@@ -20,49 +19,20 @@ const lcomments= [
     },
     {
         id: '3',
-        text: 'That look\'s delicious!',
+        text: 'Yummm',
         name: 'John',
         memNum: 1,
 
     }, 
     {
         id: '4',
-        text: 'Hey, how\'s it going!',
-        name: 'Daniel',
-        memNum: 2,
-    },
-    {
-        id: '5',
-        text: 'That look\'s delicious!',
+        text: 'Recipe please!',
         name: 'John',
         memNum: 1,
+    },
 
-    }, 
-    {
-        id: '6',
-        text: 'Hey, how\'s it going!',
-        name: 'Daniel',
-        memNum: 2,
-    },
-    {
-        id: '7',
-        text: 'Hey, how\'s it going!',
-        name: 'Daniel',
-        memNum: 2,
-    },
-    {
-        id: '8',
-        text: 'Hey, how\'s it going!',
-        name: 'Daniel',
-        memNum: 2,
-    },
-    {
-        id: '9',
-        text: 'Hey, how\'s it going!',
-        name: 'Daniel',
-        memNum: 2,
-    },
 ]
+
 let num = 1;
 function Post({type, img, text, desc, comments, member, isHeart,}) {
 
@@ -96,7 +66,6 @@ function Post({type, img, text, desc, comments, member, isHeart,}) {
 
     }
     const addCommentHandler = () =>{
-        console.log(inputText);
         if (inputText !== ''){
             const newComment = {
 
@@ -118,36 +87,33 @@ function Post({type, img, text, desc, comments, member, isHeart,}) {
             <View style={styles.post}>
 
                 <FlatList
-                // ref={ref}
-                // showsHorizontalScrollIndicator={false}
-                // horizontal
                 data={listComments}
-                // pagingEnabled
-                // scrollEnabled= {false}
                 renderItem={({item}) => 
+        
                         <View style={styles.commentArea}>
                             <View style = {styles.commentUser}>
                                 <DisplayPicture id ={item?.memNum}/>
                                 <Text style= {styles.commentName}>{item?.name}</Text>
                             </View>
                             <View style = {styles.commentDescription}>
-                                {/* show  description if there is description*/}
                                 <Text>{item?.text}</Text>
                             </View>
 
 
                     </View>
                 }/>
-                <TextInput 
-                    // style={styles.textInputArea}
-                    placeholder="Tap to start typing your comment"
-                    onChangeText={handleEditChange}
-                />
-                <TouchableOpacity style={styles.backBtn} onPress={addCommentHandler}>
-                    <Text>
-                        {'Send'}
-                    </Text>
-                </TouchableOpacity>
+                <View style ={styles.sendComment}>
+                    <TextInput 
+                        style={styles.textInputArea}
+                        placeholder="Tap to start typing your comment"
+                        onChangeText={handleEditChange}
+                    />
+                    <TouchableOpacity style={styles.sendBtn} onPress={addCommentHandler}>
+                        <Text>
+                            {'Send'}
+                        </Text>
+                    </TouchableOpacity>
+                </View>
 
                 <TouchableOpacity style={styles.backBtn} onPress={goBackHandler}>
                     <Text>
@@ -208,11 +174,10 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'flex-start',
-
-        backgroundColor:'red',
+        borderColor: 'white',
+        borderWidth: 10
     },
     user:{
-        // width: '25%',
         flex: 1,
         height: '100%',
         flexDirection: 'row',
@@ -227,10 +192,7 @@ const styles = StyleSheet.create({
 
     },
     commentUser:{
-        // width: '25%',
         flex: 1,
-        // height: '100%',
-
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-around',
@@ -239,10 +201,8 @@ const styles = StyleSheet.create({
     },
     commentDescription:{
         flex: 1,
-        // backgroundColor: 'purple',
         justifyContent: 'center',
         alignItems: 'flex-start'
-
 
     },
     commentName:{
@@ -251,7 +211,6 @@ const styles = StyleSheet.create({
     },
     description:{
         flex: 3,
-        // backgroundColor: 'purple',
         justifyContent: 'center',
         alignItems: 'flex-start'
 
@@ -282,21 +241,36 @@ const styles = StyleSheet.create({
         paddingLeft: '5%',
         alignItems: 'flex-start',
         flex: 9,
-        // backgroundColor: 'red'
 
     },
     backBtn:{
-        paddingLeft: '5%',
-        alignItems: 'flex-start',
+        padding: '5%',
+        alignItems: 'center',
+        borderTopWidth: 1,
+        borderTopColor: '#F4F4F4'
 
     },
     heart:{
         flex:1,
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    sendComment:{
+        flexDirection: 'row',
+        padding: '5%',
+        borderTopWidth: 1,
+        borderTopColor: '#F4F4F4',
+
+    },
+    textInputArea:{
+        flex: 4,
+
+    },
+    sendBtn:{
+        flex: 1,
+        alignItems: 'center',
+
     }
-
-
 
 
 })

@@ -2,8 +2,8 @@ import React from 'react';
 import { View, StyleSheet, Text} from 'react-native';
 import DisplayPicture from './DisplayPicture';
 
+// Group Display picture of Bulletin board.
 function GroupDisplay(props) {
-    // const displayPictures = Object.values(props.group.groupMembers).map((data) => <View style={styles.displayPicture}/>)
     const displayPictures = Object.values(props.group.groupMembers).map((data, index) => <DisplayPicture id = {index} displayName={true}/>)
 
     return (
@@ -11,14 +11,6 @@ function GroupDisplay(props) {
             <View style={styles.groupDP}>
                 {displayPictures}
             </View>
-        {/* <View style={styles.groupInfo}> */}
-            {/* <Text style={styles.groupName}>
-                {props.group.groupName}
-            </Text> */}
-            {/* <Text>
-            {Object.values(props.group.groupMembers).map((data) => data.displayName).join(', ')}
-            </Text> */}
-        {/* </View> */}
         </View>
     );
 }
