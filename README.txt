@@ -1,9 +1,12 @@
+This prototype of Mealshare focuses on the interactions and is not high-fidelity in nature as our framer prototype.
+It may be subjected to different layouts with our high-fidelity framer prototype due to limitations.
+
 1. To run the prototype, make sure you are in your root folder, and type the command 'expo start' in terminal. 
     a.  Run prototype in iOS Simulator or expo go. 
     b.  For further setup details, refer to our report 'illustrated setup instructions'.
 
 2. On the onboarding process, 
-    a.  Our 'tap card' interaction is illustrated by cliking the picture. 
+    a.  Our 'tap card' interaction is illustrated by pressing on the picture. 
     b.  On 'verify your identity' type 'Lisa Maroon' as your full name, or it won't allow you to go next. It is case insensitive and ignores whitespace.
         Ideally this would be your name. However, we use dummy data and set the full name as a fixed variable.
 
