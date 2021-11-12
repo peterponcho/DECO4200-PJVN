@@ -22,7 +22,7 @@ It may be subjected to different layouts with our high-fidelity framer prototype
 
 5. Once you press confirm when choosing ingredients you will be back in the bulletin board.
     a. You can interact by adding comments on the default posts and liking posts. The text input will capture your input and add to the list of comments on a post. However every post will contain the same comments as we do not have a real database.
-    b. You can create a new post and use your camera to create a new post, and it will be added to the posts in the bulletin board. However, iOS Simulator does not allow camera and therefore this will only be accessible within Expo Go application or through Web.
+    b. You can create a new post and use your camera to create a new post, and it will be added to the posts in the bulletin board. However, iOS Simulator does not allow camera and therefore this will only be accessible within Expo Go application or through Web. If you click on take picture and press post in iOS Simulator, it will show as a dark square but nevertheless appear on the list of posts.
     c. You can track your ingredient by pressing the button below 'Announcements'. The delivery day is displayed according to the delivery day you chose previously when choosing ingredients pack.
 
 
